@@ -7,16 +7,30 @@
 </head>
 <body>
 <h1>
-    Welcome to the Guitar Repository. Register your guitars today!
+    Welcome to the Guitar Foster Home!
 </h1>
 <h2>
-    Create a new User:
+    Create a new Adopter's name:
     <form action="/create-user" method="post">
         <input type="text" placeholder="Enter your Name" name="name"/>
         <input type="text" placeholder="Enter your password" name="password"/>
         <button type= "Post">Create</button>
     </form>
-    Create a new Guitar
+</h2>
+<p class="all-guitars">
+    Registered Adoption Parents:
+</p>
+    <ol>
+        {{#adopters}}
+        <li>
+            <p class="all-guitars">
+                {{name}} <br>
+            </p>
+        </li>
+        {{/adopters}}
+    </ol>
+<h2>
+    <br><br>Admit a new abandoned guitar into the fosterhome:
     <form action="/create-guitar" method="post">
         <input type="text" placeholder="Guitar Make" name="make"/>
         <input type="text" placeholder="Guitar Model" name="model"/>
@@ -25,11 +39,18 @@
         <input type="text" placeholder="Type of Strings" name="strings"/>
         <button type= "Post">Create</button>
     </form>
+    Mark guitar as adopted by a loving new owner.
+    <form action="/claim-guitar" method="post">
+        <input type="text" placeholder="ID of guitar" name="id"/>
+        <input type="text" placeholder="New owner's name" name="name"/>
+
+        <button type= "Post">Adopt!</button>
+    </form>
 </h2>
 <ol>
     {{#all}}
     <li>
-        <h3><b> Order Name: {{owner}} <br></b></h3>
+        <h3><b> Guitar Owner: {{owner}} <br></b></h3>
         <p class="all-guitars">
             Make: {{make}} <br>
             Model: {{model}} <br>

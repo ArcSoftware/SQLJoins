@@ -22,15 +22,15 @@ public class Main {
     //public static Scanner inputScanner = new Scanner(System.in);
 
     public static void main(String[] args) throws SQLException {
-        Spark.staticFileLocation("/resources/public");
+        Spark.staticFileLocation("/public");
         Server.createWebServer().start();
-        port(Integer.valueOf(System.getenv("PORT")));
+        //port(Integer.valueOf(System.getenv("PORT")));
         Connection conn = DriverManager.getConnection("jdbc:h2:./main");
         Statement stmt = conn.createStatement();
         
-        stmt.execute("create table if not exists users(id identity, name varchar, password varchar");
-        stmt.execute("create table if not exists guitars(id identity, make varchar, model varchar, " +
-                "type varchar, year int, strings varchar, owner int");
+        stmt.execute("create table if not exists users (id identity, name varchar, password varchar)");
+        stmt.execute("create table if not exists guitars (id identity, make varchar, model varchar, " +
+                "type varchar, year int, strings varchar, owner varchar)");
 
         Spark.post(
                 "/create-user",
@@ -54,7 +54,7 @@ public class Main {
                     String type = request.queryParams("type");
                     String year = request.queryParams("year");
                     String strings = request.queryParams("strings");
-                    Guitar g = new Guitar(make, model, type, Integer.valueOf(year), strings, null);
+                    Guitar g = new Guitar(make, model, type, Integer.valueOf(year), strings, "Not claimed");
                     Guitar.guitars.add(g);
                     SQL.addGuitar(conn, g);
 
@@ -83,6 +83,17 @@ public class Main {
 
                     return gson.toJson(SQL.viewAllGuitars(conn));
                 })
+        );
+        Spark.get(
+                "/",
+                ((request, response) -> {
+                    HashMap m = new HashMap();
+                    m.put("all", SQL.viewAllGuitars(conn));
+                    m.put("adopters", SQL.allUser(conn));
+                    return new ModelAndView(m, "home.html");
+
+                }),
+                new MustacheTemplateEngine()
         );
 
 
