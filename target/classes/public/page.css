@@ -1,0 +1,26 @@
+body {
+  background-color: #faf0e6; }
+
+h1 {
+    color: maroon;
+    margin-left: 2.5em; }
+h2 {
+    color: maroon;
+    margin-left: 24px;}
+h3 {
+    color: maroon;
+    margin: 0;}
+
+li {
+  width:20em;
+  float:left;
+}
+
+
+.all-guitars {
+    color: green;
+    margin: 0 0 6px 0;
+    font-style: italic;
+}
+
+/*# sourceMappingURL=page.css.map */

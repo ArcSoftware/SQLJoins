@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import static spark.Spark.port;
+
 /**
  * Created by Jake on 4/25/17.
  */
@@ -22,8 +24,10 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         Spark.staticFileLocation("/resources/public");
         Server.createWebServer().start();
+        port(Integer.valueOf(System.getenv("PORT")));
         Connection conn = DriverManager.getConnection("jdbc:h2:./main");
         Statement stmt = conn.createStatement();
+        
         stmt.execute("create table if not exists users(id identity, name varchar, password varchar");
         stmt.execute("create table if not exists guitars(id identity, make varchar, model varchar, " +
                 "type varchar, year int, strings varchar, owner int");
