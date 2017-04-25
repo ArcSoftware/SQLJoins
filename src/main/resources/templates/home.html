@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/page.css">
+    <meta charset="UTF-8">
+    <title>Welcome!</title>
+</head>
+<body>
+<h1>
+    Welcome to the Guitar Repository. Register your guitars today!
+</h1>
+<h2>
+    Create a new User:
+    <form action="/create-user" method="post">
+        <input type="text" placeholder="Enter your Name" name="name"/>
+        <input type="text" placeholder="Enter your password" name="password"/>
+        <button type= "Post">Create</button>
+    </form>
+    Create a new Guitar
+    <form action="/create-guitar" method="post">
+        <input type="text" placeholder="Guitar Make" name="make"/>
+        <input type="text" placeholder="Guitar Model" name="model"/>
+        <input type="text" placeholder="Guitar type" name="type"/>
+        <input type="text" placeholder="Year Made" name="year"/>
+        <input type="text" placeholder="Type of Strings" name="strings"/>
+        <button type= "Post">Create</button>
+    </form>
+</h2>
+<ol>
+    {{#all}}
+    <li>
+        <h3><b> Order Name: {{owner}} <br></b></h3>
+        <p class="all-guitars">
+            Make: {{make}} <br>
+            Model: {{model}} <br>
+            Type: {{type}} <br>
+            Year: {{year}} <br>
+            Strings: {{strings}}<br>
+        </p>
+    </li>
+    {{/all}}
+</ol>
+
+</h2>
+</body>
+</html>
