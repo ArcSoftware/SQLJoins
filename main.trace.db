@@ -26,3 +26,6 @@ org.h2.jdbc.JdbcSQLException: Column "make" not found [42122-195]
 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:654)
 	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:572)
 	at java.lang.Thread.run(Thread.java:745)
+2017-04-25 17:51:59 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "GUITARS[*] SELECT * FROM USERS"; expected "GRANT, {"; SQL statement:
+GUITARS SELECT * FROM USERS [42001-195]
